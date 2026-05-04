@@ -1,0 +1,37 @@
+{
+  "name": "@narumiruna/pi-web-search",
+  "version": "0.1.0",
+  "description": "Pi package that adds a web_search tool backed by Brave Search or DuckDuckGo HTML.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narumiruna/pi-web-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/narumiruna/pi-web-search/issues"
+  },
+  "homepage": "https://github.com/narumiruna/pi-web-search#readme",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "extension",
+    "web-search"
+  ],
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ]
+  }
+}

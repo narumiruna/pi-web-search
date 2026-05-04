@@ -1,5 +1,5 @@
 {
-  "name": "@narumiruna/pi-web-search",
+  "name": "@narumitw/pi-web-search",
   "version": "0.1.0",
   "description": "Pi package that adds a web_search tool backed by Brave Search or DuckDuckGo HTML.",
   "type": "module",

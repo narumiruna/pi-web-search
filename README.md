@@ -23,7 +23,7 @@ pi install -l ./pi-web-search
 If published to npm, install with:
 
 ```bash
-pi install npm:@narumiruna/pi-web-search
+pi install npm:@narumitw/pi-web-search
 ```
 
 To try it for one run without adding it to settings:
@@ -103,5 +103,5 @@ Pi loads TypeScript extensions directly, so there is no build step.
 After publishing, users can run:
 
 ```bash
-pi install npm:@narumiruna/pi-web-search
+pi install npm:@narumitw/pi-web-search
 ```

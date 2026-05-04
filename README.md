@@ -97,7 +97,7 @@ Pi loads TypeScript extensions directly, so there is no build step.
 3. Publish:
 
    ```bash
-   npm publish
+   npm publish --access public
    ```
 
 After publishing, users can run:

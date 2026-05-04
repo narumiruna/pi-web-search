@@ -1,6 +1,6 @@
 import { StringEnum } from "@mariozechner/pi-ai";
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Type, type Static } from "typebox";
+import { type Static, Type } from "typebox";
 
 const WEB_SEARCH_PARAMS = Type.Object({
 	query: Type.String({ description: "Search query." }),
@@ -18,7 +18,9 @@ const WEB_SEARCH_PARAMS = Type.Object({
 		}),
 	),
 	safe_search: Type.Optional(
-		Type.Boolean({ description: "Enable safe search when the provider supports it. Defaults to true." }),
+		Type.Boolean({
+			description: "Enable safe search when the provider supports it. Defaults to true.",
+		}),
 	),
 });
 
@@ -66,7 +68,12 @@ export default function webSearchExtension(pi: ExtensionAPI) {
 				const provider = selectProvider(requestedProvider);
 
 				onUpdate?.({
-					content: [{ type: "text" as const, text: `Searching ${provider} for: ${query}` }],
+					content: [
+						{
+							type: "text" as const,
+							text: `Searching ${provider} for: ${query}`,
+						},
+					],
 					details: { query, provider },
 				});
 
@@ -127,7 +134,9 @@ async function searchBrave(
 	}
 
 	const data = (await res.json()) as {
-		web?: { results?: Array<{ title?: string; url?: string; description?: string }> };
+		web?: {
+			results?: Array<{ title?: string; url?: string; description?: string }>;
+		};
 	};
 
 	const results = (data.web?.results ?? [])
@@ -167,12 +176,17 @@ async function searchDuckDuckGo(
 
 	const html = await res.text();
 	const results = parseDuckDuckGoHtml(html, maxResults);
-	const warnings = results.length === 0 ? ["No results parsed from DuckDuckGo HTML response."] : undefined;
+	const warnings =
+		results.length === 0 ? ["No results parsed from DuckDuckGo HTML response."] : undefined;
 	return { provider: "duckduckgo", results, warnings };
 }
 
 function parseDuckDuckGoHtml(html: string, maxResults: number): SearchResult[] {
-	const anchors = [...html.matchAll(/<a[^>]+class=["'][^"']*result__a[^"']*["'][^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+	const anchors = [
+		...html.matchAll(
+			/<a[^>]+class=["'][^"']*result__a[^"']*["'][^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+		),
+	];
 	const results: SearchResult[] = [];
 	const seen = new Set<string>();
 
@@ -184,7 +198,9 @@ function parseDuckDuckGoHtml(html: string, maxResults: number): SearchResult[] {
 		const title = cleanText(match[2] ?? "");
 		if (!title || !url || seen.has(url)) continue;
 
-		const snippetMatch = block.match(/<(?:a|div)[^>]+class=["'][^"']*result__snippet[^"']*["'][^>]*>([\s\S]*?)<\/(?:a|div)>/i);
+		const snippetMatch = block.match(
+			/<(?:a|div)[^>]+class=["'][^"']*result__snippet[^"']*["'][^>]*>([\s\S]*?)<\/(?:a|div)>/i,
+		);
 		const snippet = snippetMatch ? cleanText(snippetMatch[1] ?? "") : undefined;
 
 		seen.add(url);
@@ -196,7 +212,9 @@ function parseDuckDuckGoHtml(html: string, maxResults: number): SearchResult[] {
 
 function normalizeDuckDuckGoUrl(rawUrl: string): string {
 	try {
-		const url = rawUrl.startsWith("//") ? new URL(`https:${rawUrl}`) : new URL(rawUrl, "https://duckduckgo.com");
+		const url = rawUrl.startsWith("//")
+			? new URL(`https:${rawUrl}`)
+			: new URL(rawUrl, "https://duckduckgo.com");
 		const uddg = url.searchParams.get("uddg");
 		return uddg ? decodeURIComponent(uddg) : url.toString();
 	} catch {

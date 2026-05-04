@@ -85,6 +85,33 @@ extensions/web-search.ts
 
 Pi loads TypeScript extensions directly, so there is no build step.
 
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run formatter, linter, and TypeScript checks:
+
+```bash
+npm run format
+npm run check
+```
+
+Install the pre-commit hooks:
+
+```bash
+pre-commit install
+```
+
+Run hooks manually:
+
+```bash
+pre-commit run --all-files
+```
+
 ## Publishing to npm
 
 1. Update `package.json` metadata (`name`, `version`, repository fields if needed).

@@ -17,6 +17,18 @@ doctor:
     npm dist-tag ls {{package}} || true
     npm view {{package}} version || true
 
+# Run formatter, linter, and typecheck
+check:
+    npm run check
+
+# Format files with Biome
+format:
+    npm run format
+
+# Install pre-commit hooks
+hooks:
+    pre-commit install
+
 # Preview the package that npm would publish
 pack:
     npm pack --dry-run

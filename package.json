@@ -1,48 +1,52 @@
 {
-  "name": "@narumitw/pi-web-search",
-  "version": "0.1.3",
-  "description": "Pi package that adds a web_search tool backed by Brave Search or DuckDuckGo HTML.",
-  "type": "module",
-  "scripts": {
-    "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/narumiruna/pi-web-search.git"
-  },
-  "bugs": {
-    "url": "https://github.com/narumiruna/pi-web-search/issues"
-  },
-  "homepage": "https://github.com/narumiruna/pi-web-search#readme",
-  "keywords": [
-    "pi-package",
-    "pi",
-    "pi-coding-agent",
-    "extension",
-    "web-search"
-  ],
-  "files": [
-    "extensions",
-    "README.md",
-    "LICENSE"
-  ],
-  "peerDependencies": {
-    "@mariozechner/pi-ai": "*",
-    "@mariozechner/pi-coding-agent": "*",
-    "typebox": "*"
-  },
-  "pi": {
-    "extensions": [
-      "./extensions"
-    ]
-  },
-  "devDependencies": {
-    "@mariozechner/pi-ai": "^0.72.1",
-    "@mariozechner/pi-coding-agent": "^0.72.1",
-    "@types/node": "^25.6.0",
-    "typebox": "^1.1.37",
-    "typescript": "^6.0.3"
-  }
+	"name": "@narumitw/pi-web-search",
+	"version": "0.1.3",
+	"description": "Pi package that adds a web_search tool backed by Brave Search or DuckDuckGo HTML.",
+	"type": "module",
+	"scripts": {
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"biome:check": "biome check .",
+		"typecheck": "tsc --noEmit",
+		"check": "npm run biome:check && npm run typecheck"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/narumiruna/pi-web-search.git"
+	},
+	"bugs": {
+		"url": "https://github.com/narumiruna/pi-web-search/issues"
+	},
+	"homepage": "https://github.com/narumiruna/pi-web-search#readme",
+	"keywords": [
+		"pi-package",
+		"pi",
+		"pi-coding-agent",
+		"extension",
+		"web-search"
+	],
+	"files": [
+		"extensions",
+		"README.md",
+		"LICENSE"
+	],
+	"peerDependencies": {
+		"@mariozechner/pi-ai": "*",
+		"@mariozechner/pi-coding-agent": "*",
+		"typebox": "*"
+	},
+	"pi": {
+		"extensions": [
+			"./extensions"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.14",
+		"@mariozechner/pi-ai": "^0.72.1",
+		"@mariozechner/pi-coding-agent": "^0.72.1",
+		"@types/node": "^25.6.0",
+		"typebox": "^1.1.37",
+		"typescript": "^6.0.3"
+	}
 }

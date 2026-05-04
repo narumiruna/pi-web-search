@@ -39,21 +39,21 @@ bump part="patch":
 # Commit the current version bump, tag it, and push main + tag
 # Run this after `just publish` succeeds.
 tag:
-    @version="$$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
+    @version="$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
     git add package.json README.md justfile; \
-    git commit -m "chore(release): $$version"; \
-    git tag "v$$version"; \
+    git commit -m "chore(release): ${version}"; \
+    git tag "v${version}"; \
     git push origin main; \
-    git push origin "v$$version"
+    git push origin "v${version}"
 
 # Full release flow: bump, publish, then commit/tag/push
 release part="patch":
     npm version {{part}} --no-git-tag-version
     npm pack --dry-run
     npm publish --access public
-    @version="$$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
+    @version="$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
     git add package.json README.md justfile; \
-    git commit -m "chore(release): $$version"; \
-    git tag "v$$version"; \
+    git commit -m "chore(release): ${version}"; \
+    git tag "v${version}"; \
     git push origin main; \
-    git push origin "v$$version"
+    git push origin "v${version}"
